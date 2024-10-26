@@ -28,6 +28,8 @@ func NewApp() *App {
 		lastid:   0,
 	}
 
+	app.upgrader.CheckOrigin = func(r *http.Request) bool { return true }
+
 	mux := http.NewServeMux()
 
 	mux.HandleFunc("GET /chat/{id}", app.handler)
